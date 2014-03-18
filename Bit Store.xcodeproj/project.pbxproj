@@ -18,6 +18,8 @@
 		6AE65B3818D829F000BC2FB5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AE65B1718D829F000BC2FB5 /* Cocoa.framework */; };
 		6AE65B4018D829F000BC2FB5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6AE65B3E18D829F000BC2FB5 /* InfoPlist.strings */; };
 		6AE65B4218D829F000BC2FB5 /* Bit_StoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE65B4118D829F000BC2FB5 /* Bit_StoreTests.m */; };
+		6AE65B4F18D83EFB00BC2FB5 /* UnifiedToolbarWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE65B4E18D83EFB00BC2FB5 /* UnifiedToolbarWindow.m */; };
+		6AE65B5218D84B2100BC2FB5 /* UnifiedToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE65B5118D84B2100BC2FB5 /* UnifiedToolbarItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,11 @@
 		6AE65B3D18D829F000BC2FB5 /* Bit StoreTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Bit StoreTests-Info.plist"; sourceTree = "<group>"; };
 		6AE65B3F18D829F000BC2FB5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6AE65B4118D829F000BC2FB5 /* Bit_StoreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bit_StoreTests.m; sourceTree = "<group>"; };
+		6AE65B4C18D82D7200BC2FB5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		6AE65B4D18D83EFB00BC2FB5 /* UnifiedToolbarWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnifiedToolbarWindow.h; sourceTree = "<group>"; };
+		6AE65B4E18D83EFB00BC2FB5 /* UnifiedToolbarWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnifiedToolbarWindow.m; sourceTree = "<group>"; };
+		6AE65B5018D84B2100BC2FB5 /* UnifiedToolbarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnifiedToolbarItem.h; sourceTree = "<group>"; };
+		6AE65B5118D84B2100BC2FB5 /* UnifiedToolbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnifiedToolbarItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +125,10 @@
 				6AE65B2918D829F000BC2FB5 /* AppDelegate.h */,
 				6AE65B2A18D829F000BC2FB5 /* AppDelegate.m */,
 				6AE65B2C18D829F000BC2FB5 /* MainMenu.xib */,
+				6AE65B5018D84B2100BC2FB5 /* UnifiedToolbarItem.h */,
+				6AE65B5118D84B2100BC2FB5 /* UnifiedToolbarItem.m */,
+				6AE65B4D18D83EFB00BC2FB5 /* UnifiedToolbarWindow.h */,
+				6AE65B4E18D83EFB00BC2FB5 /* UnifiedToolbarWindow.m */,
 				6AE65B2F18D829F000BC2FB5 /* Images.xcassets */,
 				6AE65B1E18D829F000BC2FB5 /* Supporting Files */,
 			);
@@ -253,6 +264,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AE65B2B18D829F000BC2FB5 /* AppDelegate.m in Sources */,
+				6AE65B5218D84B2100BC2FB5 /* UnifiedToolbarItem.m in Sources */,
+				6AE65B4F18D83EFB00BC2FB5 /* UnifiedToolbarWindow.m in Sources */,
 				6AE65B2418D829F000BC2FB5 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,6 +309,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				6AE65B2D18D829F000BC2FB5 /* Base */,
+				6AE65B4C18D82D7200BC2FB5 /* en */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -464,6 +478,7 @@
 				6AE65B4718D829F000BC2FB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6AE65B4818D829F000BC2FB5 /* Build configuration list for PBXNativeTarget "Bit StoreTests" */ = {
 			isa = XCConfigurationList;
@@ -472,6 +487,7 @@
 				6AE65B4A18D829F000BC2FB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
