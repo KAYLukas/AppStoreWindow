@@ -65,7 +65,6 @@
     if(items == nil){
         return;
     }
-    NSImageView* view = nil;
     for(NSToolbarItem* item in allItems){
         if([item class] == [UnifiedToolbarItem class]){
             UnifiedToolbarItem *utItem = (UnifiedToolbarItem*) item;
@@ -78,7 +77,6 @@
                 [utItem setImage: [utItem image]];
             }
             NSView* backingView = [item view];
-            NSView* topView = [self getTopView:backingView];
             NSRect frameRelWindow = [backingView convertRect:backingView.bounds toView:nil];
             NSView * viewCopy = [utItem viewDuplicate];
             frameRelWindow.size = viewCopy.frame.size;
