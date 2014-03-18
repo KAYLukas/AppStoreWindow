@@ -9,3 +9,6 @@ To define a appstore window you can use the xcode uibuilder. Just set the class
 of the window to UnifiedToolbarWindow and the class of the toolbaritems to
 UnifiedToolbarItem (you can use the default toolbarItems objects to place icons without text
 on the normal locations).
+
+
+You can check the usage of the classes by opening this project.
