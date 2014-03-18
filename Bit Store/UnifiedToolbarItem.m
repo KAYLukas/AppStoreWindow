@@ -16,8 +16,6 @@
 @implementation UnifiedToolbarItem
 
 
-@synthesize windowFocus;
-
 - (id)initWithItemIdentifier:(NSString *)itemIdentifier{
     id result = [super initWithItemIdentifier:itemIdentifier];
     
@@ -78,12 +76,6 @@
     }
 }
 
--(void) setWindowFocus:(BOOL)windowFocuss
-{
-    windowFocus = windowFocuss;
-    [self setLabel:[self label]];
-}
-
 -(void) setLabel:(NSString *)alabel{
     [super setLabel:alabel];
     NSButton* but = (NSButton *)dup;
@@ -115,26 +107,6 @@
 - (CGFloat)heightOfString:(NSString *)string withFont:(NSFont *)font {
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil];
     return [[[NSAttributedString alloc] initWithString:string attributes:attributes] size].height;
-}
-
-- (void) setDuplicateAsMainView
-{
-    NSButton* swap = dup;
-    dup = [self view];
-    [swap setImagePosition:NSImageOnly];
-    [super setView: swap];
-    [swap sizeToFit];
-    [self setImage:[self image]];
-}
-
-- (void) setOriginalAsMainView
-{
-    NSButton* swap = [self view];
-    [swap setImagePosition:NSImageAbove];
-    [super setView: dup];
-    [swap sizeToFit];
-    dup = swap;
-    [self setImage:[self image]];
 }
 
 @end

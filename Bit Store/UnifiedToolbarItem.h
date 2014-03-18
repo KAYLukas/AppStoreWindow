@@ -12,8 +12,5 @@
     NSView* dup;
 }
 
-@property BOOL windowFocus;
 - (NSView*) viewDuplicate;
-- (void)  setDuplicateAsMainView;
-- (void)  setOriginalAsMainView;
 @end
