@@ -55,6 +55,7 @@
 -(void) _layout
 {
     [[self toolbar]setDisplayMode:NSToolbarDisplayModeIconOnly];
+    [[self toolbar]setAllowsUserCustomization:NO];
     NSToolbar* tb = [self toolbar];
     NSArray* items = [tb visibleItems];
     NSArray* allItems = [tb items];

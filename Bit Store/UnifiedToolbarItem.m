@@ -29,8 +29,6 @@
     [imageView setBordered:NO];
     [imageView setButtonType:NSMomentaryChangeButton];
     [imageView setImagePosition:NSImageAbove];
-    NSFont* font = [NSFont systemFontOfSize:12];
-    [imageView setFont:font];//[NSFont fontWithName:@"Lucida Grande" size:[NSFont smallSystemFontSize]]];
     return result;
 }
 
@@ -91,7 +89,6 @@
         NSLog(@"item has no focus");
         [attrTitle addAttribute:NSForegroundColorAttributeName value:[NSColor colorWithCalibratedRed:87/255.0 green:87/255.0 blue: 87/255.0 alpha:1] range:range];
     }
-    //[attrTitle addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"Lucida Grande" size:[NSFont smallSystemFontSize]] range:range];
     [attrTitle addAttribute:NSFontAttributeName value:[NSFont controlContentFontOfSize:[NSFont smallSystemFontSize]] range:range];
     [attrTitle fixAttributesInRange:range];
     [but setAttributedTitle:attrTitle];
