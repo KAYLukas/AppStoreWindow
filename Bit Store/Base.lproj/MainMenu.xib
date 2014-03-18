@@ -682,7 +682,6 @@
                     <toolbarItem implicitItemIdentifier="1AB45E67-8391-41E9-BE72-921AFD7471BA" label="Uitgelicht" paletteLabel="Uitgelicht" image="NSBonjour" id="3L4-0G-hde" customClass="UnifiedToolbarItem">
                         <size key="maxSize" width="82" height="0.0"/>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="96EBDE4B-F595-4A63-8736-FBB4698326EC" explicitItemIdentifier="NSToolbarPurchases" label="Purchases" paletteLabel="Purchases" tag="-1" image="NSComputer" id="qvC-fa-8lH" customClass="UnifiedToolbarItem"/>
                     <toolbarItem implicitItemIdentifier="3B3DF703-E1E8-4C9D-A976-3F440F4F23DF" explicitItemIdentifier="NSToolbarShowHits" label="Hits" paletteLabel="Hits" tag="-1" image="NSActionTemplate" id="Dun-wz-QTK"/>
                     <toolbarItem implicitItemIdentifier="A29D238F-C2E7-43B9-B6BB-AD6C4289215F" explicitItemIdentifier="NSToolbarShowCategories" label="Categories" paletteLabel="Categories" tag="-1" image="NSAddTemplate" id="fji-e4-EsU"/>
                     <toolbarItem implicitItemIdentifier="EED32107-D249-42F7-9A29-7E5B7464525A" explicitItemIdentifier="NSToolbarShowUpdates" label="Updates" paletteLabel="Updates" tag="-1" image="NSApplicationIcon" id="WIV-jK-dlm"/>
@@ -740,10 +739,13 @@
                         </imageView>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="NSToolbarShowColorsItem" id="sqe-eQ-iFf"/>
+                    <toolbarItem implicitItemIdentifier="C0C8F8FF-08C2-4FC3-A01F-803FCEE69973" label="Two Persons one Icon" paletteLabel="Toolbar Item" tag="-1" image="NSUserGroup" id="enm-0V-kO4" customClass="UnifiedToolbarItem"/>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="LO5-Cc-nhU"/>
                     <toolbarItem reference="JMe-6f-AbQ"/>
+                    <toolbarItem reference="3L4-0G-hde"/>
+                    <toolbarItem reference="enm-0V-kO4"/>
                     <toolbarItem reference="3L4-0G-hde"/>
                     <toolbarItem reference="JMe-6f-AbQ"/>
                     <toolbarItem reference="KUL-N9-q9p"/>
@@ -764,8 +766,8 @@
         <image name="NSAddTemplate" width="8" height="8"/>
         <image name="NSApplicationIcon" width="128" height="128"/>
         <image name="NSBonjour" width="32" height="32"/>
-        <image name="NSComputer" width="32" height="32"/>
         <image name="NSGoLeftTemplate" width="9" height="9"/>
         <image name="NSGoRightTemplate" width="9" height="9"/>
+        <image name="NSUserGroup" width="32" height="32"/>
     </resources>
 </document>

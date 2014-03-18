@@ -69,9 +69,13 @@
         if([item class] == [UnifiedToolbarItem class]){
             UnifiedToolbarItem *utItem = (UnifiedToolbarItem*) item;
             if(fullscreen){
-                NSSize size = [utItem image].size;
-                size.height += 6;
+                NSSize imgSize = [utItem image].size;
+                imgSize.height += 6;
+                NSSize size = [utItem minSize];
+                size.height = imgSize.height;
                 [utItem setMinSize:size];
+                size = [utItem maxSize];
+                size.height = imgSize.height;
                 [utItem setMaxSize:size];
             }else{
                 [utItem setImage: [utItem image]];
