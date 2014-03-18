@@ -679,7 +679,7 @@
                 <allowedToolbarItems>
                     <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="qiN-IB-z6j"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="JMe-6f-AbQ"/>
-                    <toolbarItem implicitItemIdentifier="1AB45E67-8391-41E9-BE72-921AFD7471BA" label="Highlighted" paletteLabel="Highlighted" image="NSBonjour" id="3L4-0G-hde" customClass="UnifiedToolbarItem">
+                    <toolbarItem implicitItemIdentifier="1AB45E67-8391-41E9-BE72-921AFD7471BA" label="Uitgelicht" paletteLabel="Uitgelicht" image="NSBonjour" id="3L4-0G-hde" customClass="UnifiedToolbarItem">
                         <size key="maxSize" width="82" height="0.0"/>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="96EBDE4B-F595-4A63-8736-FBB4698326EC" explicitItemIdentifier="NSToolbarPurchases" label="Purchases" paletteLabel="Purchases" tag="-1" image="NSComputer" id="qvC-fa-8lH" customClass="UnifiedToolbarItem"/>
@@ -739,10 +739,12 @@
                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="WnL-9m-emd"/>
                         </imageView>
                     </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="NSToolbarShowColorsItem" id="sqe-eQ-iFf"/>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="LO5-Cc-nhU"/>
                     <toolbarItem reference="JMe-6f-AbQ"/>
+                    <toolbarItem reference="sqe-eQ-iFf"/>
                     <toolbarItem reference="3L4-0G-hde"/>
                     <toolbarItem reference="JMe-6f-AbQ"/>
                     <toolbarItem reference="KUL-N9-q9p"/>

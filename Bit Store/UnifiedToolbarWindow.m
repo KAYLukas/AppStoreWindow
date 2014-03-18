@@ -9,6 +9,7 @@
 #define TOOLBARADJUST 6;
 #import "UnifiedToolbarWindow.h"
 #import "UnifiedToolbarItem.h"
+#import <Foundation/Foundation.h>
 
 @implementation UnifiedToolbarWindow
 
@@ -17,6 +18,7 @@
 
 - (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag
 {
+    fullscreen = NO;
 	if ((self = [super initWithContentRect:contentRect styleMask:aStyle backing:bufferingType defer:flag])) {
 		[self _doInitialWindowSetup];
 	}
@@ -36,8 +38,9 @@
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	[nc addObserver:self selector:@selector(_layout) name:NSWindowDidResizeNotification object:self];
 	[nc addObserver:self selector:@selector(_layout) name:NSWindowDidEndSheetNotification object:self];
-    [nc addObserver:self selector:@selector(_unFocus) name:NSWindowDidResignMainNotification object:self];
-    [nc addObserver:self selector:@selector(_focus) name:NSWindowDidBecomeMainNotification object:self];
+    [nc addObserver:self selector:@selector(_inffFullScreen) name:NSWindowWillEnterFullScreenNotification object:self];
+    [nc addObserver:self selector:@selector(_outFullScreen) name:NSWindowWillExitFullScreenNotification object:self];
+    [nc addObserver:self selector:@selector(_didFullScreen) name:NSWindowDidEnterFullScreenNotification object:self];
     [[self toolbar]setDisplayMode:NSToolbarDisplayModeIconOnly];
     [self _layout];
 }
@@ -54,6 +57,9 @@
 
 -(void) _layout
 {
+    if(fullscreen){
+        return;
+    }
     [[self toolbar]setDisplayMode:NSToolbarDisplayModeIconOnly];
     [[self toolbar]setAllowsUserCustomization:NO];
     NSToolbar* tb = [self toolbar];
@@ -83,37 +89,89 @@
     
 }
 
--(void) _unFocus{
-    NSLog(@"unFocus");
+-(void) _inffFullScreen
+{
+    fullscreen = YES;
+    NSToolbar* tb = [self toolbar];
+    [[self toolbar] setDisplayMode: NSToolbarDisplayModeIconAndLabel];
+    NSArray* allItems = [tb items];
+    if(allItems == nil){
+        return;
+    }
+    BOOL first = YES;
+    for(NSToolbarItem* item in allItems){
+        if([item class] == [UnifiedToolbarItem class]){
+            UnifiedToolbarItem *utItem = (UnifiedToolbarItem *)item;
+            [[utItem viewDuplicate] removeFromSuperview];
+            [utItem setDuplicateAsMainView];
+        }
+    }
+}
+
+-(void) _outFullScreen
+{
+    fullscreen = NO;
+    [[self toolbar]setDisplayMode: NSToolbarDisplayModeIconOnly];
     NSToolbar* tb = [self toolbar];
     NSArray* allItems = [tb items];
     if(allItems == nil){
         return;
     }
-    NSImageView* view = nil;
     for(NSToolbarItem* item in allItems){
         if([item class] == [UnifiedToolbarItem class]){
-            UnifiedToolbarItem *utItem = (UnifiedToolbarItem*) item;
-            utItem.windowFocus = NO;
+            UnifiedToolbarItem *utItem = (UnifiedToolbarItem *)item;
+            [utItem setOriginalAsMainView];
         }
     }
     [self _layout];
 }
 
--(void) _focus{
-    NSLog(@"focus");
-    NSToolbar* tb = [self toolbar];
+-(void) _didFullScreen
+{
+ /*   NSToolbar*tb = [self toolbar];
     NSArray* allItems = [tb items];
     if(allItems == nil){
         return;
     }
-    NSImageView* view = nil;
-    for(NSToolbarItem* item in allItems){
+    NSToolbarItem* item = nil;
+    for(item in allItems){
         if([item class] == [UnifiedToolbarItem class]){
-            UnifiedToolbarItem *utItem = (UnifiedToolbarItem*) item;
-            utItem.windowFocus = YES;
+            break;
         }
     }
-    [self _layout];
+    if(item != nil){
+        NSView* v = [item view];
+        v = [v superview];
+        v = [v superview];
+        NSArray* toolbarItemViewers = [v subviews];
+        CGFloat minY = +INFINITY;
+        NSMutableArray* frames = [NSMutableArray new];
+        for(NSView* toolbarItemViewer in toolbarItemViewers){
+            NSRect frame = toolbarItemViewer.frame;
+            minY = MIN(minY, frame.origin.y);
+            NSView *v2 = [[toolbarItemViewer subviews] objectAtIndex:0];
+            [frames addObject: [NSValue valueWithRect: frame]];
+        }
+        for(NSView* toolbarItemViewer in toolbarItemViewers){
+            NSRect frame = toolbarItemViewer.frame;
+            frame.origin.y = 6;
+            toolbarItemViewer.frame = frame;
+            NSView *v2 = [[toolbarItemViewer subviews] objectAtIndex:0];
+            if(![@"" isEqualToString: [[((id)v2) cell] title]]){
+                frame.origin.y -= 6;
+                toolbarItemViewer.frame = frame;
+            }
+        }
+        v = [v superview];
+        NSRect frame = v.frame;
+        frame.origin.y -= 12;
+        v.frame = frame;
+        v = [v superview];
+        frame = v.frame;
+        frame.origin.y -= 12;
+        v.frame = frame;
+    }else{
+        NSLog(@"Warning! UnifiedToolbarWindow used without a UnifiedToolbarItem. This causes incorrect alignment in the fullscreen scenario");
+    }*/
 }
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "UnifiedToolbarItem.h"
+#import <objc/runtime.h>
 
 @interface NSToolbarItem ()
 - (id) initWithCoder: (NSCoder*) aDecoder;
@@ -26,6 +27,8 @@
         imageView = [[NSButton alloc] init];
         [self setView:imageView];
     }
+    
+    [imageView setFont:[NSFont systemFontOfSize:[NSFont smallSystemFontSize]]];
     [imageView setBordered:NO];
     [imageView setButtonType:NSMomentaryChangeButton];
     [imageView setImagePosition:NSImageAbove];
@@ -49,7 +52,9 @@
     size.width = MAX(size.width, [self getLabelWidth]);
     [self setMinSize: size];
     [self setMaxSize: size];
-    [dupp setImage:image];
+    if([dup class] == [NSButton class]){
+        [dupp setImage:image];
+    }
     NSRect frame = [[self view] frame];
     frame.size = size;
     NSRect bounds = [[self view] bounds];
@@ -65,8 +70,12 @@
 }
 
 -(NSView*) viewDuplicate{
-    [((NSButton*)dup) sizeToFit];
-    return dup;
+    if([dup class] == [NSButton class]){
+        [((NSButton*)dup) sizeToFit];
+        return dup;
+    }else{
+        return nil;
+    }
 }
 
 -(void) setWindowFocus:(BOOL)windowFocuss
@@ -82,20 +91,20 @@
     [[NSMutableAttributedString alloc] initWithString:alabel];
     unsigned long len = [attrTitle length];
     NSRange range = NSMakeRange(0, len);
-    if(windowFocus){
-        NSLog(@"item has focus");
-        [attrTitle addAttribute:NSForegroundColorAttributeName value:[NSColor colorWithCalibratedRed:52/255.0 green:52/255.0 blue: 52/255.0 alpha:1] range:range];
-    }else{
-        NSLog(@"item has no focus");
-        [attrTitle addAttribute:NSForegroundColorAttributeName value:[NSColor colorWithCalibratedRed:87/255.0 green:87/255.0 blue: 87/255.0 alpha:1] range:range];
-    }
-    [attrTitle addAttribute:NSFontAttributeName value:[NSFont controlContentFontOfSize:[NSFont smallSystemFontSize]] range:range];
-    [attrTitle fixAttributesInRange:range];
+    [attrTitle addAttribute:NSForegroundColorAttributeName value:[NSColor controlTextColor]range: range];
+    //Is correct checked by interspection
+    [attrTitle addAttribute:NSFontAttributeName value:[NSFont systemFontOfSize:[NSFont smallSystemFontSize]] range:range];
+    NSButtonCell*  butCell = [but cell];
+    [butCell setBackgroundStyle:NSBackgroundStyleRaised];
     [but setAttributedTitle:attrTitle];
 }
 
 -(CGFloat) getLabelWidth{
-    return [self widthOfString:[self label] withFont:[((NSButton*)dup) font] ] + 5;
+    if([dup class] == [NSButton class]){
+        return [self widthOfString:[self label] withFont:[((NSButton*)dup) font] ] + 4;
+    }else{
+        return 0;
+    }
 }
 
 - (CGFloat)widthOfString:(NSString *)string withFont:(NSFont *)font {
@@ -108,5 +117,24 @@
     return [[[NSAttributedString alloc] initWithString:string attributes:attributes] size].height;
 }
 
+- (void) setDuplicateAsMainView
+{
+    NSButton* swap = dup;
+    dup = [self view];
+    [swap setImagePosition:NSImageOnly];
+    [super setView: swap];
+    [swap sizeToFit];
+    [self setImage:[self image]];
+}
+
+- (void) setOriginalAsMainView
+{
+    NSButton* swap = [self view];
+    [swap setImagePosition:NSImageAbove];
+    [super setView: dup];
+    [swap sizeToFit];
+    dup = swap;
+    [self setImage:[self image]];
+}
 
 @end

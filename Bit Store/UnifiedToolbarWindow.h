@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UnifiedToolbarWindow : NSWindow
+@interface UnifiedToolbarWindow : NSWindow{
+    BOOL fullscreen;
+}
     @property NSString* title;
 @end
